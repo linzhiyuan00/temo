@@ -9,7 +9,9 @@ const routes = [
   {
     path: "/",
     name: "Game",
-    component: Game
+    component: Game,
+    hasChildren: true,
+   
   },
   {
     path: "/Movie",
