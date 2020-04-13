@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <vue-particles
+    <!-- <vue-particles
         class="pagebackground"
         color="#006699"
         :particleOpacity="0.5"
@@ -17,12 +17,7 @@
         hoverMode="repulse"
         :clickEffect="true"
         clickMode="push"
-      >
-      </vue-particles>
-    <div id="nav">
-      <router-link to="/">英雄联盟</router-link>|
-      <router-link to="/movie">电影排行</router-link> 
-    </div>
+      /> -->
     <router-view />
   </div>
 </template>

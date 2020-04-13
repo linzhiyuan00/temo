@@ -1,41 +1,34 @@
 <template>
-  <div class="game">
+  <div class="view game">
     <!-- 游戏首页轮播图 -->
     <div class="index_scroll">
-      <el-carousel height="340px" arrow="always">
+      <el-carousel height="400px" arrow="always">
         <el-carousel-item v-for="item in carousel_imglist" :key="item.id">
           <el-image
-            style="width: 820px; height: 340px"
+            style="width: 100%; height: 400px"
             :src="item.src"
             @click="toOffical_page(item.id)"
           ></el-image>
         </el-carousel-item>
       </el-carousel>
     </div>
-    <!-- 标签资讯页 -->
-    <div class="index_tabs">
-    <Tabs v-model="activeName">
-        <TabPane label="综合" name="1">综合</TabPane>
-        <TabPane label="公告" name="2">公告</TabPane>
-        <TabPane label="赛事" name="3">赛事</TabPane>
-        <TabPane label="攻略" name="4">攻略</TabPane>
-        <TabPane label="社区" name="5">社区</TabPane>
-    </Tabs>
-      <!-- <el-tabs v-model="activeName" @tab-click="handleClick">
-        <el-tab-pane label="综合" name="1">综合</el-tab-pane>
-        <el-tab-pane label="公告" name="2">公告</el-tab-pane>
-        <el-tab-pane label="赛事" name="3">赛事</el-tab-pane>
-        <el-tab-pane label="攻略" name="4">攻略</el-tab-pane>
-        <el-tab-pane label="社区" name="5">社区</el-tab-pane>
-      </el-tabs> -->
+    <div class="game_body">
+      <!-- 标签资讯页 -->
+      <div class="game_tabs">
+        <Tabs v-model="activeName" style="width:400px">
+          <TabPane label="综合" name="1">综合</TabPane>
+          <TabPane label="公告" name="2">公告</TabPane>
+          <TabPane label="赛事" name="3">赛事</TabPane>
+          <TabPane label="攻略" name="4">攻略</TabPane>
+          <TabPane label="社区" name="5">社区</TabPane>
+        </Tabs>
+      </div>
+      <div class="game_information"></div>
     </div>
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-// import HelloWorld from "@/components/HelloWorld.vue";
-
 export default {
   name: "game",
   // components: {
@@ -106,37 +99,25 @@ export default {
 </script>
 <style lang="less">
 .game {
-  width: 1350px;
-  height: auto;
-  padding: 25px 10px 80px 10px;
-  margin: 0 auto;
-
-  &:after {
-    content: "";
-    display: table;
-    clear: both;
-    visibility: hidden;
-    font-size: 0;
-    height: 0;
-  }
+  .clearfloat();
   .index_scroll {
-    float: left;
-    width: 820px;
-    height: 340px;
+    width: 1200px;
+    height: 400px;
   }
-  .index_tabs {
-    margin-right: 50px;
-    float: right;
-    width: 500px;
-    height: 340px;
-    .ivu-tabs-nav{
-      .ivu-tabs-ink-bar{
-        width: 85px !important;
-      }
-      .ivu-tabs-tab{
-        margin:0 15px 0 10px;
+  .game_body {
+    width: 100%;
+    padding: 20px 50px;
+    .clearfloat();
+    .game_tabs {
+      float: left;
+      width: 500px;
+      height: 340px;
     }
-    } 
+    .game_information {
+      float: left;
+      width: 600px;
+      height: 5000px;
+    }
   }
 }
 .el-carousel__item h3 {

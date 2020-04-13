@@ -10,7 +10,8 @@ Vue.use(ElementUI);
 import iView from 'iview';
 import 'iview/dist/styles/iview.css';
 Vue.use(iView);
-
+// 引入home组件的全局less
+import '@/common/common.less'
 import VueParticles from 'vue-particles'; //粒子背景插件
 
 Vue.use(VueParticles);
