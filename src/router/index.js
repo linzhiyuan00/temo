@@ -6,6 +6,7 @@ import Login from "../views/Login.vue";
 import UserInfo from "../views/UserInfo.vue";
 import Collect from "../views/Collect.vue";
 import AddInformation from "../views/AddInformation.vue";
+import Info from "../views/Info.vue";
 
 import Game from "../views/game/Game.vue";
 import Movie from "../views/movie/Movie.vue";
@@ -52,6 +53,11 @@ const routes = [
         path: "/AddInformation",
         name: "AddInformation",
         component: AddInformation
+      },
+      {
+        path: "/Info/:id",
+        name: "Info",
+        component: Info
       },
     ]
   }

@@ -14,6 +14,11 @@ Vue.use(iView);
 import '@/common/common.less'
 import VueParticles from 'vue-particles'; //粒子背景插件
 
+
+router.afterEach((to,from,next) => {
+  window.scrollTo(0,0);
+})
+
 Vue.use(VueParticles);
 Vue.config.productionTip = false;
 
