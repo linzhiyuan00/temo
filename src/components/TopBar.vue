@@ -80,6 +80,7 @@ export default {
   position: fixed;
   z-index: 9999;
   width: 100%;
+  min-width: 1200px;
   height: 80px;
   background-color: #fff;
   border-bottom: 2px solid #e5e5e5;
@@ -96,11 +97,11 @@ export default {
   }
   .classify {
     float: left;
-    width: calc(100vw - 500px);
+    width: 400px;
     height: 80px;
     padding: 20px 0 0 0;
+    margin-left: 250px;
     .classifyshop {
-      flex: 1;
       display: inline-block;
       font-size: 30px;
       line-height: 40px;

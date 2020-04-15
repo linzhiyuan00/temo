@@ -17,7 +17,19 @@ module.exports = {
     },
     host: 'localhost',
     port: 8080,
-    // proxy: process.env.NODE_ENV === 'production' ?'' :'https://ccsmanagement.71baomu.com/ccsmanagement'
+    proxy: {
+      '/douban': {
+        target: 'http://api.douban.com/v2',
+        ws: true,
+        changeOrigin: true,
+        pathRewrite: {
+          '^/douban': ''    //代理的路径
+        }
+      },
+      '/foo': {
+        target: '<other_url>'
+      }
+    } 
   },
   css: {
     loaderOptions: {

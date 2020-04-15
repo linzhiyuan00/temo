@@ -1,53 +1,82 @@
 <template>
-  <div class="addproduct">
+  <div class="addinformation">
     <div class="content">
-      <div class="view_title">添加商品</div>
-      <div class="user">
-        <Button style="margin:20px" type="primary">添加商品</Button>
-        <div class="add">
-          <div class="table_head">
-            <div class="col col1">商品ID</div>
-            <div class="col col2">商品名称</div>
-            <div class="col col3">商品价格(￥)</div>
-            <div class="col col4">商品描述</div>
-            <div class="col col5">商品图片</div>
-            <div class="col col6">商品类型</div>
-          </div>
-          <div class="table_body">
-            <div class="row col1">
-              <Input v-model="product_id" placeholder="商品ID" size="large" style="width:90px" />
-            </div>
-            <div class="row col2">
-              <Input v-model="product_name" placeholder="商品名称" size="large" style="width:90px" />
-            </div>
-            <div class="row col3">
-              <Input v-model="product_price" placeholder="商品价格(￥)" size="large" style="width:90px" />
-            </div>
-            <div class="row col4">
-              <Input
-                v-model="product_txt"
-                type="textarea"
-                placeholder="商品描述"
-                size="large"
-                :autosize="{minRows: 3,maxRows: 5}"
-                style="width:180px"
-              />
-            </div>
-            <div class="row col5">
-              <Upload action="//jsonplaceholder.typicode.com/posts/">
-                <Button icon="ios-cloud-upload-outline">点击上传图片</Button>
-              </Upload>
-            </div>
-            <div class="row col6">
-              <Select v-model="product_type" style="width:150px">
-                <Option
-                  v-for="item in product_typeList"
-                  :value="item.value"
-                  :key="item.value"
-                >{{ item.label }}</Option>
-              </Select>
-            </div>
-          </div>
+      <div class="view_title">添加最新资讯</div>
+      <div class="add_body">
+        <div class="add_title">
+          <div class="tip">标题：</div>
+          <Input v-model="addinfo_title" placeholder="输入标题" class="title_input" />
+        </div>
+        <div class="add_text">
+          <div class="tip">写在前面：</div>
+          <Input
+            v-model="addinfo_textfirst"
+            class="text_input"
+            type="textarea"
+            :autosize="{minRows: 5,maxRows: 5}"
+            placeholder="输入写在前面内容"
+          />
+        </div>
+        <div class="add_img">
+          <div class="tip">主要图片：</div>
+          <el-upload
+            class="upload_img"
+            action="https://jsonplaceholder.typicode.com/posts/"
+            :on-change="handleChange1"
+            :on-remove="handleRemove2"
+            :file-list="main_imglist"
+            list-type="picture"
+          >
+            <el-button size="small" type="primary">点击上传</el-button>
+            <div slot="tip" class="el-upload__tip">只能上传jpg/png文件，且不超过500kb</div>
+          </el-upload>
+        </div>
+        <div class="add_text">
+          <div class="tip">第一段内容：</div>
+          <Input
+            v-model="addinfo_text1"
+            class="text_input"
+            type="textarea"
+            :autosize="{minRows: 5,maxRows: 5}"
+            placeholder="输入第一段内容"
+          />
+        </div>
+        <div class="add_text">
+          <div class="tip">第二段内容：</div>
+          <Input
+            v-model="addinfo_text2"
+            class="text_input"
+            type="textarea"
+            :autosize="{minRows: 5,maxRows: 5}"
+            placeholder="输入第二段内容"
+          />
+        </div>
+        <div class="add_img">
+          <div class="tip">次要图片：</div>
+          <el-upload
+            class="upload_img"
+            action="https://jsonplaceholder.typicode.com/posts/"
+            @on-change="handleChange2"
+            @on-remove="handleRemove2"
+            :file-list="second_imglist"
+            list-type="picture"
+          >
+            <el-button size="small" type="primary">点击上传</el-button>
+            <div slot="tip" class="el-upload__tip">只能上传jpg/png文件，且不超过500kb</div>
+          </el-upload>
+        </div>
+        <div class="add_text">
+          <div class="tip">写在最后：</div>
+          <Input
+            v-model="addinfo_textfinally"
+            class="text_input"
+            type="textarea"
+            :autosize="{minRows: 5,maxRows: 5}"
+            placeholder="输入写在最后内容"
+          />
+        </div>
+        <div class="release">
+          <Button type="error" size="large" style="width:200px;height:40px;">发布资讯</Button>
         </div>
       </div>
       <div class="index_footer">
@@ -60,127 +89,99 @@
 export default {
   data() {
     return {
-      product_id: "",
-      product_name: "",
-      product_price: "",
-      product_txt:"",
-      product_type: "",
-      product_typeList: [
-        {
-          value: "1",
-          label: "手机"
-        },
-        {
-          value: "2",
-          label: "平板"
-        },
-        {
-          value: "3",
-          label: "笔记本"
-        },
-        {
-          value: "4",
-          label: "配件"
-        }
-      ]
+      addinfo_title: "",
+      addinfo_textfirst: "",
+      main_imglist: [],
+      addinfo_text1: "",
+      addinfo_text2: "",
+      second_imglist: [],
+      addinfo_textfinally: ""
     };
   },
-  methods: {}
+  methods: {
+    handleChange1(file, filelist) {
+      console.log(file, filelist);
+    },
+    handleRemove1(file, filelist) {
+      console.log(file, filelist);
+    },
+    handleChange2(file, filelist) {
+      console.log(file, filelist);
+    },
+    handleRemove2(file, filelist) {
+      console.log(file, filelist);
+    }
+  }
 };
 </script>
 <style lang="less">
-.addproduct {
+.addinformation {
   .content {
     width: 1000px;
     margin: auto;
-    background-color: #e5e5e5;
+    // background-color: #e5e5e5;
     .view_title {
       color: #f61700;
       font-size: 25px;
       height: 50px;
       line-height: 50px;
       text-align: center;
-      margin-top: 20px;
+      font-weight: 700;
+      margin: 20px 0;
     }
-    .user {
+    .add_body {
       width: 100%;
-      padding: 10px;
-      background-color: #fff;
-      .add {
+      .add_title {
         width: 100%;
-        height: 300px;
-        .table_head {
-          background: rgba(89, 92, 99, 1);
-          color: #fff;
-          font-size: 14px;
-          line-height: 40px;
-          &:after {
-            content: "";
-            display: table;
-            clear: both;
-            visibility: hidden;
-            font-size: 0;
-            height: 0;
-          }
-        }
-        .table_body {
-          font-size: 14px;
-          line-height: 40px;
-          &:after {
-            content: "";
-            display: table;
-            clear: both;
-            visibility: hidden;
-            font-size: 0;
-            height: 0;
-          }
-        }
-        .col {
-          height: 40px;
-          line-height: 40px;
-          white-space: nowrap;
-          text-overflow: ellipsis;
-          overflow: hidden;
+        height: 50px;
+        margin-bottom: 30px;
+        padding: 10px 0 0 0;
+        .clearfloat();
+        .title_input {
           float: left;
+          width: 500px;
         }
-        .row {
-          height: 100px;
-          line-height: 40px;
-          white-space: nowrap;
-          text-overflow: ellipsis;
-          overflow: hidden;
+      }
+      .tip {
+        float: left;
+        width: 300px;
+        text-align: right;
+        font-size: 18px;
+        font-weight: 600;
+      }
+      .add_text {
+        width: 100%;
+        // height: 80px;
+        margin-bottom: 30px;
+        padding: 10px 0 0 0;
+        .clearfloat();
+        .text_input {
           float: left;
+          width: 500px;
         }
-        .col1 {
-          width: 10%;
-          text-align: center;
+      }
+      .add_img {
+        width: 100%;
+        // height: 100px;
+        margin-bottom: 30px;
+        padding: 10px 0 0 0;
+        .upload_img {
+          float: left;
+          width: 500px;
+          min-height: 150px;
         }
-        .col2 {
-          width: 10%;
-          text-align: center;
-        }
-        .col3 {
-          width: 10%;
-          text-align: center;
-        }
-        .col4 {
-          width: 20%;
-          text-align: center;
-        }
-        .col5 {
-          width: 30%;
-          text-align: center;
-        }
-        .col6 {
-          width: 20%;
-          text-align: center;
-        }
+      }
+      .release {
+        width: 100%;
+        height: 100px;
+        padding: 20px 0;
       }
     }
 
     .index_footer {
       width: 100%;
       height: 80px;
+      margin-top: 50px;
       background-color: #333333;
       font-size: 20px;
       line-height: 80px;
