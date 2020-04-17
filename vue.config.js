@@ -2,7 +2,7 @@ var path = require('path');
 
 
 module.exports = {
-  publicPath: process.env.NODE_ENV === 'production' ? './' : '/',
+  publicPath:  './',
   outputDir: 'dist',  //输出目录
   assetsDir: '',            //public下静态资源打包目录
   indexPath: 'index.html',  //生成index.html 目录

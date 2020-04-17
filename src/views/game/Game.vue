@@ -218,29 +218,7 @@ export default {
     }
   },
   mounted() {
-    this.$axios
-    .get('/douban/movie/in_theaters?apikey=0df993c66c0c636e29ecbb5344252a4a&start=0&count=20')
-    .then(res =>{
-      console.log(res)
-    });
-
-    this.$axios
-    .get('/douban/movie/top250?apikey=0df993c66c0c636e29ecbb5344252a4a&start=0&count=20')
-    .then(res =>{
-      console.log(res)
-    })
-
-    this.$axios
-    .get('/douban/movie/coming_soon?apikey=0df993c66c0c636e29ecbb5344252a4a&start=0&count=20')
-    .then(res =>{
-      console.log(res)
-    })
-
-    this.$axios
-    .get('/douban/movie/subject/1292720?apikey=0df993c66c0c636e29ecbb5344252a4a')
-    .then(res =>{
-      console.log(res)
-    })
+    
   },
 };
 </script>
@@ -264,7 +242,6 @@ export default {
       float: left;
       width: 700px;
       border-left: #f4f5f5 solid 10px;
-      height: 5000px;
       .information_box {
         margin: 20px 20px 50px 20px;
         width: 660px;

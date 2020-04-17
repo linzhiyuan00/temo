@@ -7,6 +7,7 @@ import UserInfo from "../views/UserInfo.vue";
 import Collect from "../views/Collect.vue";
 import AddInformation from "../views/AddInformation.vue";
 import Info from "../views/Info.vue";
+import Movie_info from "../views/Movie_info.vue";
 
 import Game from "../views/game/Game.vue";
 import Movie from "../views/movie/Movie.vue";
@@ -59,12 +60,15 @@ const routes = [
         name: "Info",
         component: Info
       },
+      {
+        path: "/Movie_info/:id",
+        name: "Movie_info",
+        component: Movie_info
+      },
     ]
   }
 ];
 const router = new VueRouter({
-  mode: "history",
-  base: process.env.BASE_URL,
   routes
 });
 

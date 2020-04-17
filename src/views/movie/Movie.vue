@@ -3,36 +3,98 @@
     <div class="movie_body">
       <div class="classify_title">正在热播</div>
       <div class="movie_information">
-        <div class="information_box" v-for="item of hotplay_list" :key="item.id" @click="to_info(item)">
+        <div
+          class="information_box"
+          v-for="item of hotplay_list"
+          :key="item.id"
+          @click="to_info(item)"
+        >
           <div class="information_mainimg">
-            <img :src="item.images.large" alt="" style="width: 140px;height: 200px;">
+            <img :src="item.images.large" alt style="width: 140px;height: 200px;" />
           </div>
           <div class="information_info">
-            <div class="movie_title">
-              {{item.title}}
+            <div class="movie_title">{{item.title}}</div>
+            <div class="info_box">
+              <span class="movie_tip">主演：</span>
+              <span class="movie_txt">{{main_actor(item.casts)}}</span>
+            </div>
+            <div class="info_box">
+              <span class="movie_tip">导演：</span>
+              <span class="movie_txt">{{main_actor(item.directors)}}</span>
+            </div>
+            <div class="info_box">
+              <span class="movie_tip">类型：</span>
+              <span class="movie_txt">{{main_txt(item.genres)}}</span>
+            </div>
+            <div class="info_box">
+              <span class="movie_tip">上映日期：</span>
+              <span class="movie_txt">{{item.mainland_pubdate}}</span>
             </div>
           </div>
-          
         </div>
       </div>
       <div class="classify_title">即将上映</div>
       <div class="movie_information">
-        <div class="information_box" v-for="item of comingplay_list" :key="item.id" @click="to_info(item)">
+        <div
+          class="information_box"
+          v-for="item of comingplay_list"
+          :key="item.id"
+          @click="to_info(item)"
+        >
           <div class="information_mainimg">
-            <img :src="item.images.large" alt="" style="width: 140px;height: 200px;">
+            <img :src="item.images.large" alt style="width: 140px;height: 200px;" />
           </div>
-          <div class="information_info">{{item.title}}</div>
-          
+          <div class="information_info">
+            <div class="movie_title">{{item.title}}</div>
+            <div class="info_box">
+              <span class="movie_tip">主演：</span>
+              <span class="movie_txt">{{main_actor(item.casts)}}</span>
+            </div>
+            <div class="info_box">
+              <span class="movie_tip">导演：</span>
+              <span class="movie_txt">{{main_actor(item.directors)}}</span>
+            </div>
+            <div class="info_box">
+              <span class="movie_tip">类型：</span>
+              <span class="movie_txt">{{main_txt(item.genres)}}</span>
+            </div>
+            <div class="info_box">
+              <span class="movie_tip">上映日期：</span>
+              <span class="movie_txt">{{item.mainland_pubdate}}</span>
+            </div>
+          </div>
         </div>
       </div>
       <div class="classify_title">TOP250</div>
       <div class="movie_information">
-        <div class="information_box" v-for="item of top250_list" :key="item.id" @click="to_info(item)">
+        <div
+          class="information_box"
+          v-for="item of top250_list"
+          :key="item.id"
+          @click="to_info(item)"
+        >
           <div class="information_mainimg">
-            <img :src="item.images.large" alt="" style="width: 140px;height: 200px;">
+            <img :src="item.images.large" alt style="width: 140px;height: 200px;" />
           </div>
-          <div class="information_info">{{item.title}}</div>
-          
+          <div class="information_info">
+            <div class="movie_title">{{item.title}}</div>
+            <div class="info_box">
+              <span class="movie_tip">主演：</span>
+              <span class="movie_txt">{{main_actor(item.casts)}}</span>
+            </div>
+            <div class="info_box">
+              <span class="movie_tip">导演：</span>
+              <span class="movie_txt">{{main_actor(item.directors)}}</span>
+            </div>
+            <div class="info_box">
+              <span class="movie_tip">类型：</span>
+              <span class="movie_txt">{{main_txt(item.genres)}}</span>
+            </div>
+            <div class="info_box">
+              <span class="movie_tip">上映日期：</span>
+              <span class="movie_txt">{{item.mainland_pubdate}}</span>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -47,47 +109,69 @@ export default {
   // }
   data() {
     return {
-      hotplay_list:[],
-      comingplay_list:[],
-      top250_list:[]
+      hotplay_list: [],
+      comingplay_list: [],
+      top250_list: []
     };
   },
   methods: {
-    to_info(item){
-      // this.$router.push({name:'Info',params:{id:item.id}});
+    to_info(item) {
+      this.$router.push({name:'Movie_info',params:{id:item.id}});
+    },
+    main_actor(arr) {
+      let result = "";
+      for (let i = 0; i < arr.length; i++) {
+        if (i == 0) {
+          result += arr[i].name;
+        } else {
+          result += "/" + arr[i].name;
+        }
+      }
+      return result;
+    },
+    main_txt(arr) {
+      let result = "";
+      for (let i = 0; i < arr.length; i++) {
+        if (i == 0) {
+          result += arr[i];
+        } else {
+          result += "/" + arr[i];
+        }
+      }
+      return result;
     }
   },
   mounted() {
     this.$axios
-    .get('/douban/movie/in_theaters?apikey=0df993c66c0c636e29ecbb5344252a4a&start=0&count=10')
-    .then(res =>{
-      if(res.status == 200){
-        this.hotplay_list = JSON.parse(JSON.stringify(res.data.subjects))
-      }
-    });
+      .get(
+        "/douban/movie/in_theaters?apikey=0df993c66c0c636e29ecbb5344252a4a&start=0&count=10"
+      )
+      .then(res => {
+        if (res.status == 200) {
+          this.hotplay_list = JSON.parse(JSON.stringify(res.data.subjects));
+        }
+      });
 
     this.$axios
-    .get('/douban/movie/top250?apikey=0df993c66c0c636e29ecbb5344252a4a&start=0&count=10')
-    .then(res =>{
-      if(res.status == 200){
-        this.top250_list = JSON.parse(JSON.stringify(res.data.subjects))
-      }
-    })
+      .get(
+        "/douban/movie/top250?apikey=0df993c66c0c636e29ecbb5344252a4a&start=0&count=10"
+      )
+      .then(res => {
+        if (res.status == 200) {
+          this.top250_list = JSON.parse(JSON.stringify(res.data.subjects));
+        }
+      });
 
     this.$axios
-    .get('/douban/movie/coming_soon?apikey=0df993c66c0c636e29ecbb5344252a4a&start=0&count=5')
-    .then(res =>{
-      if(res.status == 200){
-        this.comingplay_list = JSON.parse(JSON.stringify(res.data.subjects))
-      }
-    })
-
-    this.$axios
-    .get('/douban/movie/subject/1292720?apikey=0df993c66c0c636e29ecbb5344252a4a')
-    .then(res =>{
-      console.log(res)
-    })
-  },
+      .get(
+        "/douban/movie/coming_soon?apikey=0df993c66c0c636e29ecbb5344252a4a&start=0&count=5"
+      )
+      .then(res => {
+        if (res.status == 200) {
+          this.comingplay_list = JSON.parse(JSON.stringify(res.data.subjects));
+        }
+      });
+  }
 };
 </script>
 <style lang="less">
@@ -97,10 +181,10 @@ export default {
     width: 100%;
     padding: 20px 50px;
     .clearfloat();
-    .classify_title{
+    .classify_title {
       width: 1100px;
       height: 80px;
-      padding:  0 20px;
+      padding: 0 20px;
       margin: 0 50px;
       font-size: 30px;
       color: #f61700;
@@ -118,21 +202,37 @@ export default {
         padding: 10px 30px;
         background-color: #fff;
         border: solid 2px #f4f5f5;
-        &:hover{
-          box-shadow: 0px 1px 5px #1798FC;
+        &:hover {
+          box-shadow: 0px 1px 5px #1798fc;
         }
         .clearfloat();
-        .information_info{
+        .information_info {
           padding: 15px 30px;
           height: 230px;
           width: 530px;
-          font-size: 20px;
-          color: #909090;
-          font-weight: 600;
-          line-height: 130px;
           float: left;
+          .movie_tip {
+            font-size: 13px;
+            color: #666666;
+          }
+          .movie_txt {
+            color: #3377aa;
+          }
+          .movie_title {
+            height: 40px;
+            padding: 5px 20px;
+            font-size: 20px;
+            color: #909090;
+            font-weight: 600;
+          }
+          .info_box {
+            height: 40px;
+            padding: 5px 30px;
+            line-height: 30px;
+            text-align: left;
+          }
         }
-        .information_mainimg{
+        .information_mainimg {
           margin: 15px 10px;
           float: left;
           width: 140px;
