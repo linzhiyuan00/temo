@@ -1,36 +1,22 @@
+// 引入axios和qs包
 import axios from "axios";
 import qs from 'qs'
 
+// 初始化
 const clearRequest = {
 	source: axios.CancelToken.source(),
 }
-
+// 进行游戏axios基础配置
 const instance = axios.create({
-	baseURL: location.href.includes('smstemplate.53kf.com')? 'https://ccsmanagement.53kf.com/ccsmanagement' :'https://ccsmanagement.71baomu.com/ccsmanagement',
-	// baseURL: process.env.NODE_ENV=='production'? 'https://usermanagement.53kf.com' :'https://usermanagement.71baomu.com',
-	// baseURL: process.env.NODE_ENV=='development'?'/api':'',
-	// headers: {
-	// 	"Access-Control-Allow-Origin" : "*",
-	// 	// "X-Requested-With" : 'XMLHttpRequest',
-	// 	// "Content-Type": "application/json;charset=utf-8",
-	// 	// 'Content-Type':'application/x-www-form-urlencoded;charset=utf-8',
-	// 	'Accept': '*/*',
-	// },
-// 	transformRequest: [function (data) {
-// 		if(data&&data.is_json_data) {
-// 				delete data.is_json_data;
-				
-// 				return JSON.stringify(data);
-// 		}
-// 		return qs.stringify(data);
-// }],
-
+	// 默认url
+	baseURL:'',
+	// 超时时间
 	timeout: 30000, 
 	withCredentials: true,//请求头带cookie
 });
-// 配置发送请求拦截器
+// 配置游戏axios发送请求拦截器及返回数据处理
 instance.interceptors.request.use(config => {
-	config.cancelToken = clearRequest.source.token;// 这句很重要
+	config.cancelToken = clearRequest.source.token;
 	if (config.method === 'post') {
 		config.data = qs.stringify(config.data)
 	}
@@ -38,15 +24,16 @@ instance.interceptors.request.use(config => {
 }, error => {
 	return Promise.reject(error)
 });
-
+// 配置电影axios基础配置
 const movie_instance = axios.create({
 	baseURL: 'http://api.douban.com/v2',
 	timeout: 30000, 
 	withCredentials: true,//请求头带cookie
 });
 
+// 配置电影axios发送请求拦截器及返回数据处理
 movie_instance.interceptors.request.use(config => {
-	config.cancelToken = clearRequest.source.token;// 这句很重要
+	config.cancelToken = clearRequest.source.token;
 	if (config.method === 'post') {
 		config.data = qs.stringify(config.data)
 	}
@@ -55,10 +42,11 @@ movie_instance.interceptors.request.use(config => {
 	return Promise.reject(error)
 });
 
-
+// 导出
 export {
   instance,
-  movie_instance,
+	movie_instance,
+	// 没有配置过的原生axios
 	axios,
 	clearRequest,
 }

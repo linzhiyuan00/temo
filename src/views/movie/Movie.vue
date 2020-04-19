@@ -1,7 +1,7 @@
 <template>
   <div class="view movie">
     <div class="movie_body">
-      <div class="classify_title">正在热播</div>
+      <div class="classify_title">正在热播...</div>
       <div class="movie_information">
         <div
           class="information_box"
@@ -10,7 +10,7 @@
           @click="to_info(item)"
         >
           <div class="information_mainimg">
-            <img :src="item.images.large" alt style="width: 140px;height: 200px;" />
+            <img :src="getImages(item.images.large)" alt style="width: 140px;height: 200px;" />
           </div>
           <div class="information_info">
             <div class="movie_title">{{item.title}}</div>
@@ -33,7 +33,7 @@
           </div>
         </div>
       </div>
-      <div class="classify_title">即将上映</div>
+      <div class="classify_title">即将上映...</div>
       <div class="movie_information">
         <div
           class="information_box"
@@ -42,7 +42,7 @@
           @click="to_info(item)"
         >
           <div class="information_mainimg">
-            <img :src="item.images.large" alt style="width: 140px;height: 200px;" />
+            <img :src="getImages(item.images.large)" alt style="width: 140px;height: 200px;" />
           </div>
           <div class="information_info">
             <div class="movie_title">{{item.title}}</div>
@@ -65,7 +65,7 @@
           </div>
         </div>
       </div>
-      <div class="classify_title">TOP250</div>
+      <div class="classify_title">TOP250...</div>
       <div class="movie_information">
         <div
           class="information_box"
@@ -74,7 +74,7 @@
           @click="to_info(item)"
         >
           <div class="information_mainimg">
-            <img :src="item.images.large" alt style="width: 140px;height: 200px;" />
+            <img :src="getImages(item.images.large)" alt style="width: 140px;height: 200px;" />
           </div>
           <div class="information_info">
             <div class="movie_title">{{item.title}}</div>
@@ -139,6 +139,13 @@ export default {
         }
       }
       return result;
+    },
+    // 解决403图片缓存问题
+    getImages( _url ){
+      if( _url !== undefined ){
+        let _u = _url.substring( 7 );
+        return 'https://images.weserv.nl/?url=' + _u;
+      }
     }
   },
   mounted() {

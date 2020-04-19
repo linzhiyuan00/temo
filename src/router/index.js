@@ -1,6 +1,8 @@
+// 引入vue实例和vuerouter模块
 import Vue from "vue";
 import VueRouter from "vue-router";
 
+// 引入各个页面
 import Home from "../views/Home.vue";
 import Login from "../views/Login.vue";
 import UserInfo from "../views/UserInfo.vue";
@@ -14,7 +16,7 @@ import Movie from "../views/movie/Movie.vue";
 
 
 Vue.use(VueRouter);
-
+// 配置路由
 const routes = [
   {
     path: "/",
@@ -72,4 +74,5 @@ const router = new VueRouter({
   routes
 });
 
+// 导出
 export default router;
