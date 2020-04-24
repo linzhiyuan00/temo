@@ -1,15 +1,34 @@
 <template>
   <div class="view info">
     <div class="info_body">
-      <div class="information_title">{{information_info.title}}</div>
+      <div class="information_title">
+        <img
+          class="collectimg"
+          v-show="collect == false"
+          title="点击收藏"
+          @click="tocollect(true)"
+          src="../assets/uncollect.png"
+          alt
+        />
+        <img
+          class="collectimg"
+          title="取消收藏"
+          @click="tocollect(false)"
+          v-show="collect == true"
+          src="../assets/collected.png"
+          alt
+        />
+        {{information_info.title}}
+        <span class="collecttip">收藏数：{{collectnum}}</span>
+      </div>
       <p class="first_text_box info_text">{{information_info.first_text}}</p>
       <div class="main_img_box info_img">
-        <img :src="information_info.main_img" alt  />
+        <img :src="information_info.main_img" alt />
       </div>
       <p class="second_text_box info_text">{{information_info.second_text}}</p>
       <p class="third_text_box info_text">{{information_info.third_text}}</p>
       <div class="second_img_box info_img">
-        <img :src="information_info.second_img" alt  />
+        <img :src="information_info.second_img" alt />
       </div>
       <p class="finally_text_box info_text">{{information_info.finally_text}}</p>
     </div>
@@ -32,8 +51,22 @@ export default {
         second_img: require("../assets/game_img/carimg_3.png"),
         finally_text:
           "那么， 查尔斯·史考伯曾经说过，一个人几乎可以在任何他怀有无限热忱的事情上成功。 带着这句话，我们还要更加慎重的审视这个问题： 现在，解决孙悟空大战葫芦娃的问题，是非常非常重要的。 所以， 孙悟空大战葫芦娃因何而发生？ 每个人都不得不面对这些问题。 在面对这种问题时， 带着这些问题，我们来审视一下孙悟空大战葫芦娃。 可是，即使是这样，孙悟空大战葫芦娃的出现仍然代表了一定的意义。 可是，即使是这样，孙悟空大战葫芦娃的出现仍然代表了一定的意义。 孙悟空大战葫芦娃，到底应该如何实现。 问题的关键究竟为何？ 现在，解决孙悟空大战葫芦娃的问题，是非常非常重要的。 所以， 每个人都不得不面对这些问题。 在面对这种问题时， 就我个人来说，孙悟空大战葫芦娃对我的意义，不能不说非常重大。 杰纳勒尔·乔治·S·巴顿曾经说过，接受挑战，就可以享受胜利的喜悦。我希望诸位也能好好地体会这句话。 孙悟空大战葫芦娃，到底应该如何实现。 每个人都不得不面对这些问题。 在面对这种问题时， 孙悟空大战葫芦娃因何而发生？ 黑塞在不经意间这样说过，有勇气承担命运这才是英雄好汉。这不禁令我深思。 孙悟空大战葫芦娃的发生，到底需要如何做到，不孙悟空大战葫芦娃的发生，又会如何产生。"
-      }
+      },
+      collect: true,
+      collectnum: 36
     };
+  },
+  methods: {
+    tocollect(state) {
+      this.collect = state;
+      if (state == true) {
+        this.$Message.success("收藏成功！");
+        this.collectnum +=1;
+      } else {
+        this.$Message.error("取消成功！");
+        this.collectnum -=1;
+      }
+    }
   }
 };
 </script>
@@ -60,6 +93,19 @@ export default {
       padding: 50px;
       font-size: 30px;
       font-weight: 700;
+      .collectimg {
+        float: left;
+        width: 50px;
+        height: 50px;
+        cursor: pointer;
+      }
+      .collecttip {
+        float: right;
+        margin-right: 50px;
+        font-size: 15px;
+        line-height: 50px;
+        color: #71777c;
+      }
     }
   }
 }

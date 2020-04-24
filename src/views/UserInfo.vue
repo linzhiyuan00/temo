@@ -3,7 +3,25 @@
     <div class="content">
       <div class="view_title">个人信息</div>
       <div class="user">
-        <div class="info_box">用户名：张三</div>
+        <div class="info_box">
+          <span>昵称：</span>
+          <Input class="info_input" v-model="user.name" placeholder="输入昵称~" :disabled="editinfo" />
+        </div>
+        <div class="info_box">
+          <span>性别：</span>
+          <RadioGroup v-model="user.sex" style="float:left" >
+            <Radio label="男" :disabled="editinfo"></Radio>
+            <Radio label="女" :disabled="editinfo"></Radio>
+          </RadioGroup>
+        </div>
+        <div class="info_box">
+          <span>个性签名：</span>
+          <Input class="info_input" v-model="user.person_txt" :disabled="editinfo" placeholder="输入个性签名~" />
+        </div>
+        <div class="info_box">
+          <Button v-show="editinfo == true" type="primary" @click="toeditinfo(false)">修改个人信息</Button>
+          <Button v-show="editinfo == false" type="primary" @click="toeditinfo(true)">保存信息</Button>
+        </div>
         <div class="info_box">
           <Button type="primary" @click="admintype">切换身份</Button>
           <span>{{admin == true ? '管理员' : '普通用户'}}</span>
@@ -19,7 +37,13 @@
 export default {
   data() {
     return {
-      admin: false
+      admin: false,
+      user: {
+        name: "张三",
+        sex: "",
+        person_txt: ""
+      },
+      editinfo:true
     };
   },
   watch: {
@@ -32,6 +56,9 @@ export default {
     }
   },
   methods: {
+    toeditinfo(state){
+      this.editinfo = state;
+    },
     admintype() {
       if (this.admin == true) {
         this.$store.dispatch("update_isadmin", false);
@@ -56,7 +83,7 @@ export default {
     margin: auto;
     background-color: #e5e5e5;
     .view_title {
-      color: #f61700;
+      color: #1890ff;
       font-size: 25px;
       height: 50px;
       line-height: 50px;
@@ -65,7 +92,7 @@ export default {
     }
     .user {
       width: 100%;
-      padding: 10px;
+      padding: 20px;
       background-color: #fff;
       .info_box {
         width: 100%;
@@ -73,7 +100,19 @@ export default {
         padding: 10px;
         line-height: 40px;
         font-size: 20px;
-        color: #f61700;
+        color: #1890ff;
+        .clearfloat();
+        > span {
+          float: left;
+          width: 350px;
+          text-align: right;
+        }
+        .info_input {
+          float: left;
+          position: relative;
+          top: 4px;
+          width: 300px;
+        }
       }
     }
 

@@ -78,7 +78,7 @@ export default {
 <style lang="less">
 .topbar {
   position: fixed;
-  z-index: 9999;
+  z-index: 100;
   width: 100%;
   min-width: 1200px;
   height: 80px;
@@ -100,7 +100,7 @@ export default {
     width: 400px;
     height: 80px;
     padding: 20px 0 0 0;
-    margin-left: 250px;
+    margin-left: 350px;
     .classifyshop {
       display: inline-block;
       font-size: 30px;
