@@ -1,7 +1,12 @@
 <template>
   <div class="view info">
     <div class="info_body">
-      <div class="information_title">
+      <Anchor show-ink  style="position:fixed;top:200px;left:50px;">
+        <AnchorLink href="#biaoti" title="标题" />
+        <AnchorLink href="#neirong" title="内容" />
+        <AnchorLink href="#pinglun" title="评论" />
+    </Anchor>
+      <div class="information_title" id="biaoti">
         <img
           class="collectimg"
           v-show="collect == false"
@@ -25,12 +30,28 @@
       <div class="main_img_box info_img">
         <img :src="information_info.main_img" alt />
       </div>
-      <p class="second_text_box info_text">{{information_info.second_text}}</p>
+      <p class="second_text_box info_text" id="neirong">{{information_info.second_text}}</p>
       <p class="third_text_box info_text">{{information_info.third_text}}</p>
       <div class="second_img_box info_img">
         <img :src="information_info.second_img" alt />
       </div>
-      <p class="finally_text_box info_text">{{information_info.finally_text}}</p>
+      <p class="finally_text_box info_text" >{{information_info.finally_text}}</p>
+      <div class="comment" id="pinglun">
+        <div class="edit_comment">
+          <Input type="textarea" :autosize="{minRows: 3,maxRows: 6}"  v-model="mycomment" placeholder="写下你的评论吧~"/>
+          <Button type="primary" style="margin:20px" @click="editcomment">评论</Button>
+        </div>
+        <div class="commentlist" >
+          <div class="comment_tip">评论列表：</div>
+          <div class="comment_box" v-for=" item in comment_list" :key="item.autherid">
+            <div>
+              <span style="color:#666699;margin-right:20px;">{{item.authername}}</span>
+              <span style="color:#aaa;margin-left:20px;">{{item.created_at}}</span>
+            </div>
+            <div style="padding:10px 20px;">{{item.content}}</div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -53,7 +74,59 @@ export default {
           "那么， 查尔斯·史考伯曾经说过，一个人几乎可以在任何他怀有无限热忱的事情上成功。 带着这句话，我们还要更加慎重的审视这个问题： 现在，解决孙悟空大战葫芦娃的问题，是非常非常重要的。 所以， 孙悟空大战葫芦娃因何而发生？ 每个人都不得不面对这些问题。 在面对这种问题时， 带着这些问题，我们来审视一下孙悟空大战葫芦娃。 可是，即使是这样，孙悟空大战葫芦娃的出现仍然代表了一定的意义。 可是，即使是这样，孙悟空大战葫芦娃的出现仍然代表了一定的意义。 孙悟空大战葫芦娃，到底应该如何实现。 问题的关键究竟为何？ 现在，解决孙悟空大战葫芦娃的问题，是非常非常重要的。 所以， 每个人都不得不面对这些问题。 在面对这种问题时， 就我个人来说，孙悟空大战葫芦娃对我的意义，不能不说非常重大。 杰纳勒尔·乔治·S·巴顿曾经说过，接受挑战，就可以享受胜利的喜悦。我希望诸位也能好好地体会这句话。 孙悟空大战葫芦娃，到底应该如何实现。 每个人都不得不面对这些问题。 在面对这种问题时， 孙悟空大战葫芦娃因何而发生？ 黑塞在不经意间这样说过，有勇气承担命运这才是英雄好汉。这不禁令我深思。 孙悟空大战葫芦娃的发生，到底需要如何做到，不孙悟空大战葫芦娃的发生，又会如何产生。"
       },
       collect: true,
-      collectnum: 36
+      collectnum: 36,
+      comment_list:[
+        {
+          autherid:1,
+          authername:'小杰瑞',
+          created_at:"2020-01-10 03:20:36",
+          content:"电影完全可以用FBI的角度去讲述一个激进的胖子是如何成为炸弹嫌犯，伪造英雄事迹，被千夫所指，结尾抓到真正罪犯啪啪啪打脸各种官员媒体。这个故事也会变成“爆款”、“必看”、“神作”。然而老爷子没有这么拍，因为他根本不屌这些，这才是东木的魅力"
+        },
+        {
+          autherid:2,
+          authername:'小杰瑞',
+          created_at:"2020-01-10 03:20:36",
+          content:"电影完全可以用FBI的角度去讲述一个激进的胖子是如何成为炸弹嫌犯，伪造英雄事迹，被千夫所指，结尾抓到真正罪犯啪啪啪打脸各种官员媒体。这个故事也会变成“爆款”、“必看”、“神作”。然而老爷子没有这么拍，因为他根本不屌这些，这才是东木的魅力"
+        },
+        {
+          autherid:3,
+          authername:'小杰瑞',
+          created_at:"2020-01-10 03:20:36",
+          content:"电影完全可以用FBI的角度去讲述一个激进的胖子是如何成为炸弹嫌犯，伪造英雄事迹，被千夫所指，结尾抓到真正罪犯啪啪啪打脸各种官员媒体。这个故事也会变成“爆款”、“必看”、“神作”。然而老爷子没有这么拍，因为他根本不屌这些，这才是东木的魅力"
+        },
+        {
+          autherid:4,
+          authername:'小杰瑞',
+          created_at:"2020-01-10 03:20:36",
+          content:"电影完全可以用FBI的角度去讲述一个激进的胖子是如何成为炸弹嫌犯，伪造英雄事迹，被千夫所指，结尾抓到真正罪犯啪啪啪打脸各种官员媒体。这个故事也会变成“爆款”、“必看”、“神作”。然而老爷子没有这么拍，因为他根本不屌这些，这才是东木的魅力"
+        },
+        {
+          autherid:5,
+          authername:'小杰瑞',
+          created_at:"2020-01-10 03:20:36",
+          content:"电影完全可以用FBI的角度去讲述一个激进的胖子是如何成为炸弹嫌犯，伪造英雄事迹，被千夫所指，结尾抓到真正罪犯啪啪啪打脸各种官员媒体。这个故事也会变成“爆款”、“必看”、“神作”。然而老爷子没有这么拍，因为他根本不屌这些，这才是东木的魅力"
+        },
+        {
+          autherid:6,
+          authername:'小杰瑞',
+          created_at:"2020-01-10 03:20:36",
+          content:"电影完全可以用FBI的角度去讲述一个激进的胖子是如何成为炸弹嫌犯，伪造英雄事迹，被千夫所指，结尾抓到真正罪犯啪啪啪打脸各种官员媒体。这个故事也会变成“爆款”、“必看”、“神作”。然而老爷子没有这么拍，因为他根本不屌这些，这才是东木的魅力"
+        },
+        {
+          autherid:7,
+          authername:'小杰瑞',
+          created_at:"2020-01-10 03:20:36",
+          content:"电影完全可以用FBI的角度去讲述一个激进的胖子是如何成为炸弹嫌犯，伪造英雄事迹，被千夫所指，结尾抓到真正罪犯啪啪啪打脸各种官员媒体。这个故事也会变成“爆款”、“必看”、“神作”。然而老爷子没有这么拍，因为他根本不屌这些，这才是东木的魅力"
+        },
+        {
+          autherid:8,
+          authername:'小杰瑞',
+          created_at:"2020-01-10 03:20:36",
+          content:"电影完全可以用FBI的角度去讲述一个激进的胖子是如何成为炸弹嫌犯，伪造英雄事迹，被千夫所指，结尾抓到真正罪犯啪啪啪打脸各种官员媒体。这个故事也会变成“爆款”、“必看”、“神作”。然而老爷子没有这么拍，因为他根本不屌这些，这才是东木的魅力"
+        },
+        
+      ],
+      mycomment:""
     };
   },
   methods: {
@@ -61,11 +134,20 @@ export default {
       this.collect = state;
       if (state == true) {
         this.$Message.success("收藏成功！");
-        this.collectnum +=1;
+        this.collectnum += 1;
       } else {
         this.$Message.error("取消成功！");
-        this.collectnum -=1;
+        this.collectnum -= 1;
       }
+    },
+    editcomment(){
+      if(this.mycomment == ''){
+        this.$Message.error('评论不能为空！');
+        return;
+      }else{
+        this.$Message.success('评论成功！');
+      }
+      
     }
   }
 };
@@ -105,6 +187,34 @@ export default {
         font-size: 15px;
         line-height: 50px;
         color: #71777c;
+      }
+    }
+    .comment {
+      width: 100%;
+      padding: 50px 0;
+      border-top: solid #e5e5e5 2px;
+      .comment_tip{
+          width: 100px;
+          color: #9b9b9b;
+          font-size: 17px;
+          margin-bottom: 20px;
+        }
+      .edit_comment {
+        width: 100%;
+        height: 150px;
+      }
+      .commentlist {
+        width: 1000px;
+        margin-left: 40px;
+        float: left;
+        .comment_box {
+          min-height: 100px;
+          padding: 10px 0;
+          margin: 0 0 0 50px;
+          width: 100%;
+          text-align: left;
+          border-bottom: solid #e5e5e5 1px;
+        }
       }
     }
   }

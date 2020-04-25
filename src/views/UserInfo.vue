@@ -3,6 +3,10 @@
     <div class="content">
       <div class="view_title">个人信息</div>
       <div class="user">
+        <div class="info_box" style="height:120px">
+          <span>头像：</span>
+          <img src="../assets/logo.png" style="width:100px;height:100px" alt="">
+        </div>
         <div class="info_box">
           <span>昵称：</span>
           <Input class="info_input" v-model="user.name" placeholder="输入昵称~" :disabled="editinfo" />
@@ -106,6 +110,11 @@ export default {
           float: left;
           width: 350px;
           text-align: right;
+        }
+        >img{
+          float: left;
+          border: solid #e5e5e5 1px;
+          // margin: 20px;
         }
         .info_input {
           float: left;

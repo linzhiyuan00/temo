@@ -9,6 +9,7 @@ import UserInfo from "../views/UserInfo.vue";
 import Collect from "../views/Collect.vue";
 import AddInformation from "../views/AddInformation.vue";
 import Info from "../views/Info.vue";
+import Usermanage from "../views/Usermanage.vue";
 import Movie_info from "../views/Movie_info.vue";
 
 import Game from "../views/game/Game.vue";
@@ -61,6 +62,11 @@ const routes = [
         path: "/Info/:id",
         name: "Info",
         component: Info
+      },
+      {
+        path: "/Usermanage",
+        name: "Usermanage",
+        component: Usermanage
       },
       {
         path: "/Movie_info/:id",

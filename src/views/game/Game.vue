@@ -8,17 +8,16 @@
         <AnchorLink href="#shequ" title="社区" />
     </Anchor>
     <div class="index_scroll">
-      <el-carousel height="400px" arrow="always">
-        <el-carousel-item v-for="item in carousel_imglist" :key="item.id">
-          <el-image
+      <Carousel  :height="400" arrow="always">
+        <CarouselItem v-for="item in carousel_imglist" :key="item.id">
+          <img
             style="width: 100%; height: 400px"
             :src="item.src"
-          ></el-image>
-        </el-carousel-item>
-      </el-carousel>
+          />
+        </CarouselItem>
+      </Carousel >
     </div>
     <div class="game_body">
-      <!-- 标签资讯页 -->
       <div class="game_classify">
         <div class="classify_item" id="zonghe">
           <div class="classify_title zhonghe">综合</div>

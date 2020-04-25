@@ -75,6 +75,16 @@
             placeholder="输入写在最后内容"
           />
         </div>
+        <div class="add_text">
+          <div class="tip">资讯类型：</div>
+          <Select v-model="infotype" style="width:500px;float:left;">
+            <Option
+              v-for="item in infotypelist"
+              :value="item.value"
+              :key="item.value"
+            >{{ item.label }}</Option>
+          </Select>
+        </div>
         <div class="release">
           <Button type="error" size="large" style="width:200px;height:40px;">发布资讯</Button>
         </div>
@@ -95,6 +105,25 @@ export default {
       addinfo_text1: "",
       addinfo_text2: "",
       second_imglist: [],
+      infotypelist:[
+        {
+          value:1,
+          label:"综合"
+        },
+        {
+          value:2,
+          label:"赛事"
+        },
+        {
+          value:3,
+          label:"攻略"
+        },
+        {
+          value:4,
+          label:"社区"
+        },
+      ],
+      infotype:'',
       addinfo_textfinally: ""
     };
   },

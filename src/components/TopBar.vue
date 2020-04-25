@@ -23,6 +23,9 @@
             <router-link class="classifyshop" to="/Collect">我的收藏</router-link>
           </MenuItem>
           <MenuItem name="3" v-show="admin == true">
+            <router-link class="classifyshop" to="/Usermanage">用户管理</router-link>
+          </MenuItem>
+          <MenuItem name="4" v-show="admin == true">
             <router-link class="classifyshop" to="/AddInformation">管理员添加最新资讯</router-link>
           </MenuItem>
         </Submenu>
